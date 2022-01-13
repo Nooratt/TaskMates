@@ -13,6 +13,7 @@ namespace TaskDudes
             InitializeComponent();
             Routing.RegisterRoute(nameof(TaskDetailPage), typeof(TaskDetailPage));
             Routing.RegisterRoute(nameof(NewTaskPage), typeof(NewTaskPage));
+            Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

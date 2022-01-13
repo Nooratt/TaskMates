@@ -6,12 +6,12 @@ using Xamarin.Forms;
 
 namespace TaskDudes.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    public class RegisterViewModel: BaseViewModel
     {
         public Command LoginCommand { get; }
         public Command RegisterCommand { get; }
 
-        public LoginViewModel()
+        public RegisterViewModel()
         {
             LoginCommand = new Command(OnLoginClicked);
             RegisterCommand = new Command(OnRegisterClicked);
@@ -26,7 +26,7 @@ namespace TaskDudes.ViewModels
         private async void OnRegisterClicked(object obj)
         {
             // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            await Shell.Current.GoToAsync(nameof(RegisterPage));
+            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
         }
     }
 }
