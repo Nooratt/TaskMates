@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Text;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TaskDudes.Models
 {
     public class Taski
     {
-        public string TaskId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string Id { get; set; }
         public string TaskName { get; set; }
 
-        public string TaskDescriptíon { get; set; }
+        public string TaskDescription { get; set; }
 
         public DateTime Date { get; set; }
 

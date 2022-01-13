@@ -10,7 +10,7 @@ namespace TaskDudes.Views
 {
     public partial class NewItemPage : ContentPage
     {
-        public Item Item { get; set; }
+        public Taski Item { get; set; }
 
         public NewItemPage()
         {

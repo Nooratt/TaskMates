@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace TaskDudes.Models
 {
     public class User
     {
-        public string UserId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string Id { get; set; }
 
         public string UserName { get; set; }
 
@@ -18,6 +20,6 @@ namespace TaskDudes.Models
 
         public List<Taski> Tasks { get; set; } = new List<Taski>();
 
-        public Settings Settings { get; set; } = new Settings(NotificationType.All);
+        public Settings Settings { get; set; } = new Settings();
     }
 }

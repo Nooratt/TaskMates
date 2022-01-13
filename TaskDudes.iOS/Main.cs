@@ -5,6 +5,11 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
+[assembly: Preserve(typeof(System.Linq.Queryable), AllMembers = true)]
+[assembly: Preserve(typeof(System.DateTime), AllMembers = true)]
+[assembly: Preserve(typeof(System.Linq.Enumerable), AllMembers = true)]
+[assembly: Preserve(typeof(System.Linq.IQueryable), AllMembers = true)]
+
 namespace TaskDudes.iOS
 {
     public class Application

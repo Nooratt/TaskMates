@@ -3,37 +3,36 @@ using System.IO;
 using Microsoft.EntityFrameworkCore;
 using TaskDudes.Models;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace TaskDudes.Services
 {
-    public class TaskMatesContext: DbContext
+    public class TaskMatesContext : DbContext
+    {
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<Taski> Tasks { get; set; }
+        public DbSet<Settings> Settings { get; set; }
+
+
+        private const string DatabaseName = "taskMatesData.db";
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
-            public DbSet<User> Users { get; set; }
-            public DbSet<Taski> Tasks { get; set; }
-            public DbSet<Settings> Settings { get; set; }
-
-        private readonly string _connectionString;
-
-        public TaskMatesContext(DbContextOptions<TaskMatesContext> options):base(options)
-        {
-           
-        }
-
-        public TaskMatesContext()
+            String databasePath;
+            switch (Device.RuntimePlatform)
             {
-                SQLitePCL.Batteries_V2.Init();
-
-                this.Database.EnsureCreated();
+                case Device.iOS:
+                    databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Library", DatabaseName);
+                    break;
+                case Device.Android:
+                    databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DatabaseName);
+                    break;
+                default:
+                    throw new NotImplementedException("Platform not supported");
             }
-
-            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            {
-                string dbPath = Path.Combine(FileSystem.AppDataDirectory, "taskMates.db3");
-
-                optionsBuilder
-                    .UseSqlite($"Filename={dbPath}");
-            }
+            optionsBuilder.UseSqlite($"Filename={databasePath}");
         }
     }
+}
 

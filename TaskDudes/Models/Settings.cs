@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace TaskDudes.Models
 {
     public class Settings
     {
-        public Settings(NotificationType notificationType)
-        {
-            NotificationType = notificationType;
-        }
+        
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string Id { get; set; }
         public NotificationType NotificationType { get; set; }
         //public Coach Coach {get; set;} = new Coach();
 
