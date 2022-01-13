@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace TaskDudes.ViewModels
 {
-    public class AboutViewModel : BaseViewModel
+    public class MainViewModel : BaseViewModel
     {
-        public AboutViewModel()
+        public MainViewModel()
         {
             Title = "Welcome to TaskMates";
             NewTaskCommand = new Command(async () => await Browser.OpenAsync("https://fi.wikipedia.org/wiki/Kana"));

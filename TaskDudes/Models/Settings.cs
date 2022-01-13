@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
+
+namespace TaskDudes.Models
+{
+    public class Settings
+    {
+        
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string Id { get; set; }
+        public NotificationType NotificationType { get; set; }
+        //public Coach Coach {get; set;} = new Coach();
+
+    }
+
+    public enum NotificationType
+    {
+        Email,
+        PushNotification,
+        IconBatch,
+        InAppNotificaton,
+        None,
+        All = Email + PushNotification + IconBatch + InAppNotificaton
+    }
+}

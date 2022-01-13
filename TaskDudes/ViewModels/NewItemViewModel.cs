@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using TaskDudes.Controllers;
 using TaskDudes.Models;
 using Xamarin.Forms;
 
@@ -49,14 +50,14 @@ namespace TaskDudes.ViewModels
 
         private async void OnSave()
         {
-            Item newItem = new Item()
+            Taski newItem = new Taski()
             {
                 Id = Guid.NewGuid().ToString(),
-                Text = Text,
-                Description = Description
+                TaskName = Text,
+                TaskDescription = Description
             };
 
-            await DataStore.AddItemAsync(newItem);
+            TaskController.AddNewTask(newItem);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");

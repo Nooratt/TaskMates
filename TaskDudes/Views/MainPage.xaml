@@ -6,7 +6,7 @@
              Title="{Binding Title}">
     
     <ContentPage.BindingContext>
-        <vm:AboutViewModel />
+        <vm:MainViewModel />
     </ContentPage.BindingContext>
     
     <ContentPage.Resources>
@@ -29,8 +29,7 @@
         </StackLayout>
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                <Label Text="TaskDudes" FontSize="Title"/>
-                <Label Text="Wooow!" FontSize="16" Padding="0,0,0,0"/>
+                <Label Text="Your daily tasks" FontSize="Title"/>
                 <Label FontSize="16" Padding="0,24,0,0">
                     <Label.FormattedText>
                         <FormattedString>

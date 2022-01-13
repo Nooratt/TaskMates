@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using TaskDudes.Services;
 using TaskDudes.Views;
 using Xamarin.Forms;
@@ -13,8 +14,10 @@ namespace TaskDudes
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
+            var db = new TaskMatesContext();
+
+            db.Database.Migrate();
         }
 
         protected override void OnStart()

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using TaskDudes.Controllers;
 using TaskDudes.Models;
 using TaskDudes.Views;
 using Xamarin.Forms;
@@ -10,22 +12,22 @@ namespace TaskDudes.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
-        private Item _selectedItem;
+        private Taski _selectedTask;
 
-        public ObservableCollection<Item> Items { get; }
-        public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get; }
-        public Command<Item> ItemTapped { get; }
+        public ObservableCollection<Taski> Tasks { get; }
+        public Command LoadTasksCommand { get; }
+        public Command AddTaskCommand { get; }
+        public Command<Taski> TaskTapped { get; }
 
         public ItemsViewModel()
         {
             Title = "Browse";
-            Items = new ObservableCollection<Item>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            Tasks = new ObservableCollection<Taski>();
+            LoadTasksCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            ItemTapped = new Command<Item>(OnItemSelected);
+            TaskTapped = new Command<Taski>(OnTaskSelected);
 
-            AddItemCommand = new Command(OnAddItem);
+            AddTaskCommand = new Command(OnAddItem);
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -34,11 +36,11 @@ namespace TaskDudes.ViewModels
 
             try
             {
-                Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
+                Tasks.Clear();
+                List<Taski> tasks = TaskController.GetAllUserTasks("nt");
+                foreach (var item in tasks)
                 {
-                    Items.Add(item);
+                    Tasks.Add(item);
                 }
             }
             catch (Exception ex)
@@ -57,13 +59,13 @@ namespace TaskDudes.ViewModels
             SelectedItem = null;
         }
 
-        public Item SelectedItem
+        public Taski SelectedItem
         {
-            get => _selectedItem;
+            get => _selectedTask;
             set
             {
-                SetProperty(ref _selectedItem, value);
-                OnItemSelected(value);
+                SetProperty(ref _selectedTask, value);
+                OnTaskSelected(value);
             }
         }
 
@@ -72,7 +74,7 @@ namespace TaskDudes.ViewModels
             await Shell.Current.GoToAsync(nameof(NewItemPage));
         }
 
-        async void OnItemSelected(Item item)
+        async void OnTaskSelected(Taski item)
         {
             if (item == null)
                 return;

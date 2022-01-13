@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using TaskDudes.Controllers;
 using TaskDudes.Models;
 using Xamarin.Forms;
 
@@ -39,14 +40,14 @@ namespace TaskDudes.ViewModels
             }
         }
 
-        public async void LoadItemId(string itemId)
+        public void LoadItemId(string itemId)
         {
             try
             {
-                var item = await DataStore.GetItemAsync(itemId);
-                Id = item.Id;
-                Text = item.Text;
-                Description = item.Description;
+                Taski task = TaskController.GetTask(itemId);
+                Id = task.Id;
+                Text = task.TaskName;
+                Description = task.TaskDescription;
             }
             catch (Exception)
             {
