@@ -18,8 +18,8 @@ namespace TaskDudes.Models
 
         public decimal Weight { get; set; }
 
-        public List<Taski> Tasks { get; set; } = new List<Taski>();
+        public List<Taski> Tasks { get; set; }
 
-        public Settings Settings { get; set; } = new Settings();
+        public Settings Settings { get; set; }
     }
 }

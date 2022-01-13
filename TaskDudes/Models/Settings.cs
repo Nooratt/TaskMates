@@ -7,6 +7,8 @@ namespace TaskDudes.Models
 {
     public class Settings
     {
+        public Settings() { }
+        public Settings(NotificationType type) { this.NotificationType = type; }
         
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Id { get; set; }

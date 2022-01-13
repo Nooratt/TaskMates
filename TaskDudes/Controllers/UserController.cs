@@ -9,7 +9,7 @@ namespace TaskDudes.Controllers
 {
     public class UserController
     {
-        TaskMatesContext context = new TaskMatesContext();
+        static TaskMatesContext context = new TaskMatesContext();
 
         public List<User> GetAllUsers()
         {
@@ -18,10 +18,16 @@ namespace TaskDudes.Controllers
 
         public User GetUser(string id) { return context.Users.Find(id); }
 
-        public async void AddNewUserAsync(User user)
+        public static async void AddNewUserAsync(User user)
         {
-            context.Users.Add(user);
-            await context.SaveChangesAsync();
+            try
+            {
+                context.Users.Add(user);
+                await context.SaveChangesAsync();
+            }catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public async void UpdateUserAsync(User user)

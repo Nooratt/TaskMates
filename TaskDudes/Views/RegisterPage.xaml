@@ -1,19 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
              x:Class="TaskDudes.Views.RegisterPage"
+             xmlns:vm="clr-namespace:TaskDudes.ViewModels"
              Shell.NavBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <vm:RegisterViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Label>Create new account
-            </Label>
-            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
-            <Label VerticalOptions="Center" Text="No account yet? Register here">
+        <StackLayout VerticalOptions="CenterAndExpand" Padding="5">
+            <StackLayout Orientation="Horizontal">
+                <Entry Text="{Binding UserName, Mode=TwoWay}" Placeholder="UserName"></Entry>
+            </StackLayout>
+            <Entry Text="{Binding Email, Mode=TwoWay}" Placeholder="Email"></Entry>
+            <Entry Text="{Binding Password, Mode=TwoWay}" Placeholder="Password" IsPassword="True"></Entry>
+            <Entry Text="{Binding PasswordConf, Mode=TwoWay}" Placeholder="Confirm Password" IsPassword="True"></Entry>
+            <!--<Label Text="Date Of Birth"></Label>
+            <DatePicker></DatePicker>
+            <Editor Text="{Binding Birthday, Mode=TwoWay}"></Editor>-->
+            <Button Text="Sign Up" Command="{Binding SaveRegistrationCommand}"></Button>
+            <Label Text="Already have account? Sign In" TextColor="Blue">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+                    <TapGestureRecognizer Command="{Binding LoginCommand}" />
                 </Label.GestureRecognizers>
             </Label>
         </StackLayout>
