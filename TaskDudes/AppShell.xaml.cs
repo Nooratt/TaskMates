@@ -11,7 +11,7 @@ namespace TaskDudes
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
+            Routing.RegisterRoute(nameof(TaskDetailPage), typeof(TaskDetailPage));
             Routing.RegisterRoute(nameof(NewTaskPage), typeof(NewTaskPage));
         }
 
