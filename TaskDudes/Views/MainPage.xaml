@@ -43,6 +43,7 @@
                         Command="{Binding NewTaskCommand}"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />
+                <Image Source="lynx_n.png" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
             </StackLayout>
         </ScrollView>
     </Grid>
