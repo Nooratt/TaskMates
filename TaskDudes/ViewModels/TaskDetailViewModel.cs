@@ -8,7 +8,7 @@ using Xamarin.Forms;
 namespace TaskDudes.ViewModels
 {
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
-    public class ItemDetailViewModel : BaseViewModel
+    public class TaskDetailViewModel : BaseViewModel
     {
         private string itemId;
         private string text;

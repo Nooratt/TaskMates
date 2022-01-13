@@ -13,8 +13,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\TaskDetailPage.xaml.cs">
+      <DependentUpon>TaskDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\NewTaskPage.xaml.cs">
+      <DependentUpon>NewTaskPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

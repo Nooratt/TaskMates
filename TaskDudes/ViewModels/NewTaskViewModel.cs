@@ -8,12 +8,12 @@ using Xamarin.Forms;
 
 namespace TaskDudes.ViewModels
 {
-    public class NewItemViewModel : BaseViewModel
+    public class NewTaskViewModel : BaseViewModel
     {
         private string text;
         private string description;
 
-        public NewItemViewModel()
+        public NewTaskViewModel()
         {
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);

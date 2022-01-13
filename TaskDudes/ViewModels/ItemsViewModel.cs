@@ -71,7 +71,7 @@ namespace TaskDudes.ViewModels
 
         private async void OnAddItem(object obj)
         {
-            await Shell.Current.GoToAsync(nameof(NewItemPage));
+            await Shell.Current.GoToAsync(nameof(NewTaskPage));
         }
 
         async void OnTaskSelected(Taski item)
@@ -80,7 +80,7 @@ namespace TaskDudes.ViewModels
                 return;
 
             // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+            await Shell.Current.GoToAsync($"{nameof(TaskDetailPage)}?{nameof(TaskDetailViewModel.ItemId)}={item.Id}");
         }
     }
 }

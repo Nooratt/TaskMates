@@ -4,12 +4,12 @@ using Xamarin.Forms;
 
 namespace TaskDudes.Views
 {
-    public partial class ItemDetailPage : ContentPage
+    public partial class TaskDetailPage : ContentPage
     {
-        public ItemDetailPage()
+        public TaskDetailPage()
         {
             InitializeComponent();
-            BindingContext = new ItemDetailViewModel();
+            BindingContext = new TaskDetailViewModel();
         }
     }
 }

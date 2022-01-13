@@ -8,14 +8,14 @@ using Xamarin.Forms.Xaml;
 
 namespace TaskDudes.Views
 {
-    public partial class NewItemPage : ContentPage
+    public partial class NewTaskPage : ContentPage
     {
         public Taski Item { get; set; }
 
-        public NewItemPage()
+        public NewTaskPage()
         {
             InitializeComponent();
-            BindingContext = new NewItemViewModel();
+            BindingContext = new NewTaskViewModel();
         }
     }
 }
