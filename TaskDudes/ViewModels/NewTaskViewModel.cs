@@ -10,8 +10,10 @@ namespace TaskDudes.ViewModels
 {
     public class NewTaskViewModel : BaseViewModel
     {
-        private string text;
+        private string name;
         private string description;
+        private DateTime date = DateTime.Now;
+        private bool isRepeating;
 
         public NewTaskViewModel()
         {
@@ -23,20 +25,32 @@ namespace TaskDudes.ViewModels
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(text)
+            return !String.IsNullOrWhiteSpace(name)
                 && !String.IsNullOrWhiteSpace(description);
         }
 
-        public string Text
+        public string Name
         {
-            get => text;
-            set => SetProperty(ref text, value);
+            get => name;
+            set => SetProperty(ref name, value);
         }
 
         public string Description
         {
             get => description;
             set => SetProperty(ref description, value);
+        }
+
+        public DateTime Date
+        {
+            get => date;
+            set => SetProperty(ref date, value);
+        }
+
+        public bool IsRepeating
+        {
+            get => isRepeating;
+            set => SetProperty(ref isRepeating, value);
         }
 
         public Command SaveCommand { get; }
@@ -53,8 +67,12 @@ namespace TaskDudes.ViewModels
             Taski newItem = new Taski()
             {
                 Id = Guid.NewGuid().ToString(),
-                TaskName = Text,
-                TaskDescription = Description
+                TaskName = Name,
+                TaskDescription = Description,
+                Date = Date,
+                TaskIsDone = false,
+                Repeating = isRepeating,
+                RepeatTime = null
             };
 
             TaskController.AddNewTask(newItem);

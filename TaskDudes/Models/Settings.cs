@@ -14,6 +14,10 @@ namespace TaskDudes.Models
         public string Id { get; set; }
         public NotificationType NotificationType { get; set; }
         //public Coach Coach {get; set;} = new Coach();
+        public string UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
 
     }
 
