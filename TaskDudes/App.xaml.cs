@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using TaskDudes.Models;
 using TaskDudes.Services;
 using TaskDudes.Views;
 using Xamarin.Forms;
@@ -17,7 +20,8 @@ namespace TaskDudes
             MainPage = new AppShell();
             var db = new TaskMatesContext();
 
-            db.Database.Migrate();
+            db.Database.EnsureCreated();
+
         }
 
         protected override void OnStart()

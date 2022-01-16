@@ -8,10 +8,14 @@
              ios:Page.UseSafeArea="true">
     <ContentPage.Content>
         <StackLayout Spacing="3" Padding="15">
-            <Label Text="Text" FontSize="Medium" />
-            <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Description" FontSize="Medium" />
-            <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <Label Text="Create new task"></Label>
+            <Entry Text="{Binding Name, Mode=TwoWay}" Placeholder="Name" FontSize="Medium" />
+            <Editor Text="{Binding Description, Mode=TwoWay}" Placeholder="Description" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <Label Text="Date"></Label>
+            <DatePicker Date="{Binding Date, Mode=TwoWay}" ></DatePicker>
+            <Label Text="Task is repeating: "></Label>
+            <CheckBox IsChecked="{Binding IsRepeating}"></CheckBox>
+            <Label Text="Repeat days" IsVisible="{Binding IsRepeating}"></Label>
             <StackLayout Orientation="Horizontal">
                 <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
                 <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>

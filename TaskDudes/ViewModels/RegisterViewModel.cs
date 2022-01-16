@@ -64,24 +64,33 @@ namespace TaskDudes.ViewModels
 
         private async void OnSave()
         {
-            User newUser = new User()
+            if (ValidateSave())
             {
-                Id = Guid.NewGuid().ToString(),
-                UserName = UserName,
-                Email = Email,
-                Password = Password,
-                Settings = new Settings(NotificationType.All),
-                Tasks = new List<Taski> ()
-            };
+                User newUser = new User()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    UserName = UserName,
+                    Email = Email,
+                    Password = Password,
+                    Settings = new Settings(NotificationType.All),
+                    Tasks = new List<Taski>()
+                };
 
-            UserController.AddNewUserAsync(newUser);
+                var registered = UserController.AddNewUserAsync(newUser);
+                
+                    string title = $"Register complete!";
+                    string message = $"You have now registered to TaskMates and can login!";
+                var users = UserController.GetAllUsers();
 
-            string title = $"Register complete!";
-            string message = $"You have now registered to TaskMates and can login!";
+                    // This will pop the current page off the navigation stack
+                    await Shell.Current.GoToAsync("..");
+                    await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+                
+            }
+            else 
+            {
 
-            // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync("..");
-            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+            }
         }
 
     }

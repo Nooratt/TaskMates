@@ -20,8 +20,11 @@ namespace TaskDudes.Models
 
         public bool Repeating { get; set; }
 
-        public DayOfWeek RepeatTime { get; set; }
+        public DayOfWeek? RepeatTime { get; set; }
 
-        public User User { get; set; }
+        public string UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
     }
 }

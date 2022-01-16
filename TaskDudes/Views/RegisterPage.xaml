@@ -25,6 +25,5 @@
                 </Label.GestureRecognizers>
             </Label>
         </StackLayout>
-        </Grid>
     </ContentPage.Content>
 </ContentPage>

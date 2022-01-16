@@ -15,7 +15,7 @@ namespace TaskDudes.Services
         public DbSet<Settings> Settings { get; set; }
 
 
-        private const string DatabaseName = "taskMatesData.db";
+        private const string DatabaseName = "taskMatesDatabase.db";
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,6 +32,14 @@ namespace TaskDudes.Services
                     throw new NotImplementedException("Platform not supported");
             }
             optionsBuilder.UseSqlite($"Filename={databasePath}");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<Taski>().ToTable("Tasks");
+            modelBuilder.Entity<Settings>().ToTable("Settings");
         }
     }
 }
