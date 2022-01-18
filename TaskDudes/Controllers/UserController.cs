@@ -10,9 +10,9 @@ namespace TaskDudes.Controllers
 {
     public class UserController
     {
-        static TaskMatesContext context = new TaskMatesContext();
+        static readonly TaskMatesContext context = new TaskMatesContext();
 
-        public static async Task<IEnumerable<User>> GetAllUsers(bool forceRefresh = false)
+        public static async Task<IEnumerable<User>> GetAllUsers()
         {
             return await Task.FromResult(context.Users);
         }

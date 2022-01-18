@@ -15,8 +15,6 @@ namespace TaskDudes.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private Taski _selectedTask;
-        private User loggedUser;
         public ObservableCollection<Taski> Tasks { get; }
         public Command LoadTasksCommand { get; }
         public MainViewModel()
@@ -39,8 +37,7 @@ namespace TaskDudes.ViewModels
             try
             {
                 Tasks.Clear();
-                //List<Taski> tasks = TaskController.GetAllUserTasks(LoggedUser.Id);
-                List<Taski> tasks = TaskController.GetAllTasks();
+                List<Taski> tasks = TaskController.GetAllUserTasks(App.LoggedUser.Id);
                 foreach (var item in tasks)
                 {
                     Tasks.Add(item);
@@ -59,12 +56,6 @@ namespace TaskDudes.ViewModels
         private async void OnAddTask(object obj)
         {
             await Shell.Current.GoToAsync(nameof(NewTaskPage));
-        }
-
-        public User LoggedUser
-        {
-            get { return loggedUser; }
-            set { loggedUser = value; }
         }
 
         public bool TasksNotEmpty

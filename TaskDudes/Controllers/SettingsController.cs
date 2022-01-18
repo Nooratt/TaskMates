@@ -9,7 +9,7 @@ namespace TaskDudes.Controllers
 {
     public class SettingsController
     {
-        static TaskMatesContext context = new TaskMatesContext();
+        static readonly TaskMatesContext context = new TaskMatesContext();
 
         public Settings GetUserSettings(string id) 
         { 
