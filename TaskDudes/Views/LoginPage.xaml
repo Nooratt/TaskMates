@@ -9,14 +9,10 @@
     <ContentPage.Content>
         <Grid BackgroundColor="#1d3b6b">
             <StackLayout Padding="10,0,10,0" Spacing="20"  VerticalOptions="Center">
-                <Entry Text="{Binding Username}" Placeholder="User name"></Entry>
-                <Entry Text="{Binding Password}" Placeholder="Password" IsPassword="True"></Entry>
+                <Entry x:Name="username" Text="{Binding Username}" Placeholder="User name" TextColor="white" PlaceholderColor="Gray"></Entry>
+                <Entry x:Name="password" Text="{Binding Password}" Placeholder="Password" IsPassword="True" TextColor="white" PlaceholderColor="Gray"></Entry>
                 <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
-                <Label VerticalOptions="Center" Text="No account yet? Register here" TextColor="blue">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding RegisterCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
+                <Button VerticalOptions="Center" Text="Register" Command="{Binding RegisterCommand}"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

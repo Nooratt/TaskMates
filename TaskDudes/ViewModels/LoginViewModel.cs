@@ -63,6 +63,10 @@ namespace TaskDudes.ViewModels
                 App.LoggedUser = UserController.GetUserWithName(Username);
                 await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
             }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert("Login failed!", "Wrong username or password", "OK");
+            }
         }
 
         private async void OnRegisterClicked(object obj)
