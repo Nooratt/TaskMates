@@ -79,8 +79,9 @@ namespace TaskDudes.ViewModels
                 
                     string title = $"Register complete!";
                     string message = $"You have now registered to TaskMates and can login!";
+                    await App.Current.MainPage.DisplayAlert(title, message, "OK");
 
-                    // This will pop the current page off the navigation stack
+                // This will pop the current page off the navigation stack
                     await Shell.Current.GoToAsync("..");
                     await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
                 

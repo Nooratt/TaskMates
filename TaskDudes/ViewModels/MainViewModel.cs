@@ -20,7 +20,9 @@ namespace TaskDudes.ViewModels
         public MainViewModel()
         {
             Tasks = new ObservableCollection<Taski>();
-            List<Taski> tasks = TaskController.GetAllTasks();
+            Tasks.Clear();
+            List<Taski> tasks = TaskController.GetAllUserTasks(App.LoggedUser.Id);
+            if(tasks!=null)
             foreach (var item in tasks)
             {
                 Tasks.Add(item);

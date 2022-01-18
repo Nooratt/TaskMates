@@ -58,8 +58,11 @@ namespace TaskDudes.ViewModels
         private async void OnLoginClicked(object obj)
         {
             var canLogin = ValidateLogin();
-            App.LoggedUser= UserController.GetUserWithName(Username);
-            await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
+            if (canLogin)
+            {
+                App.LoggedUser = UserController.GetUserWithName(Username);
+                await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
+            }
         }
 
         private async void OnRegisterClicked(object obj)

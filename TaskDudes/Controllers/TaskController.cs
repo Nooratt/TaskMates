@@ -14,8 +14,7 @@ namespace TaskDudes.Controllers
 
         public static List<Taski> GetAllUserTasks(string userId)
         {
-            User user = (User)context.Users.Where(u => u.Id == userId);
-            return user.Tasks;
+            return context.Tasks.Where(t => t.UserId==userId).ToList();
         }
 
         public static List<Taski> GetAllTasks()
@@ -25,10 +24,17 @@ namespace TaskDudes.Controllers
 
         public static Taski GetTask(string id) { return context.Tasks.Find(id); }
 
-        public static async void AddNewTask(Taski task) 
-        { 
-            context.Tasks.Add(task);
-            await context.SaveChangesAsync();
+        public static void AddNewTask(Taski task) 
+        {
+            try
+            {
+                context.Database.EnsureCreated();
+                context.Tasks.Add(task);
+                context.SaveChanges();
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
         public async void UpdateTaskAsync(Taski task)

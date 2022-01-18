@@ -11,9 +11,9 @@ namespace TaskDudes.Controllers
     {
         static readonly TaskMatesContext context = new TaskMatesContext();
 
-        public Settings GetUserSettings(string id) 
+        public static Settings GetUserSettings(string userId) 
         { 
-            return context.Settings.Find(id); 
+            return context.Settings.FirstOrDefault(s => s.UserId==userId); 
         }
 
         public async void AddNewSettingsAsync(Settings settings)

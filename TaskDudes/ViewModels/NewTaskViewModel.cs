@@ -72,9 +72,10 @@ namespace TaskDudes.ViewModels
                 Date = Date,
                 TaskIsDone = false,
                 Repeating = isRepeating,
-                RepeatTime = null
+                RepeatTime = null,
+                UserId=App.LoggedUser.Id
             };
-
+          
             TaskController.AddNewTask(newItem);
 
             // This will pop the current page off the navigation stack
