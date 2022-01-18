@@ -12,6 +12,7 @@ namespace TaskDudes
 {
     public partial class App : Application
     {
+        private static User loggedUser;
 
         public App()
         {
@@ -34,6 +35,13 @@ namespace TaskDudes
 
         protected override void OnResume()
         {
+        }
+
+        public static User LoggedUser 
+        { 
+            get { return loggedUser; }
+            set { loggedUser = value; }
+
         }
     }
 }

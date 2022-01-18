@@ -17,9 +17,9 @@ namespace TaskDudes.Controllers
             return await Task.FromResult(context.Users);
         }
 
-        public static async Task<User> GetUser(string id) 
+        public static User GetUser(string id) 
         {
-            return await Task.FromResult(context.Users.FirstOrDefault(s => s.Id == id));
+            return context.Users.FirstOrDefault(s => s.Id == id);
         }
 
         public static User GetUserWithName(string userName)

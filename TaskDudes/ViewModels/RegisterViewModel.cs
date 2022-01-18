@@ -68,7 +68,6 @@ namespace TaskDudes.ViewModels
             {
                 User newUser = new User()
                 {
-                    Id = Guid.NewGuid().ToString(),
                     UserName = UserName,
                     Email = Email,
                     Password = Password,
@@ -80,7 +79,6 @@ namespace TaskDudes.ViewModels
                 
                     string title = $"Register complete!";
                     string message = $"You have now registered to TaskMates and can login!";
-                var users = UserController.GetAllUsers();
 
                     // This will pop the current page off the navigation stack
                     await Shell.Current.GoToAsync("..");

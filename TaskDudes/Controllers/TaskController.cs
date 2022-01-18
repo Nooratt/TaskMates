@@ -10,12 +10,17 @@ namespace TaskDudes.Controllers
 {
     public class TaskController
     {
-        static TaskMatesContext context = new TaskMatesContext();
+        static readonly TaskMatesContext context = new TaskMatesContext();
 
         public static List<Taski> GetAllUserTasks(string userId)
         {
             User user = (User)context.Users.Where(u => u.Id == userId);
             return user.Tasks;
+        }
+
+        public static List<Taski> GetAllTasks()
+        {
+           return context.Tasks.ToList();      
         }
 
         public static Taski GetTask(string id) { return context.Tasks.Find(id); }
