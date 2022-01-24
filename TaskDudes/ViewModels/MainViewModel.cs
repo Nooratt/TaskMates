@@ -15,21 +15,17 @@ namespace TaskDudes.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        public ObservableCollection<Taski> Tasks { get; }
+        private Taski _selectedTask;
+        public ObservableCollection<Taski> Tasks { get; } = new ObservableCollection<Taski>();
         public Command LoadTasksCommand { get; }
+        public Command TaskTapped { get; }
         public MainViewModel()
         {
-            Tasks = new ObservableCollection<Taski>();
-            Tasks.Clear();
-            List<Taski> tasks = TaskController.GetAllUserTasks(App.LoggedUser.Id);
-            if(tasks!=null)
-            foreach (var item in tasks)
-            {
-                Tasks.Add(item);
-            }
-            Title = "Welcome to TaskMates";
+            Title = "Welcome to Task Mates";
             NewTaskCommand = new Command(OnAddTask);
             LoadTasksCommand = new Command(ExecuteLoadTasksCommand);
+            TaskTapped = new Command<Taski>(OnTaskSelected);
+            ExecuteLoadTasksCommand();
 
         }
         public void ExecuteLoadTasksCommand()
@@ -38,7 +34,10 @@ namespace TaskDudes.ViewModels
 
             try
             {
-                Tasks.Clear();
+                if (Tasks != null)
+                {
+                    Tasks.Clear();
+                }
                 List<Taski> tasks = TaskController.GetAllUserTasks(App.LoggedUser.Id);
                 foreach (var item in tasks)
                 {
@@ -53,6 +52,30 @@ namespace TaskDudes.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        public void OnAppearing()
+        {
+            IsBusy = true;
+            SelectedItem = null;
+        }
+
+        public Taski SelectedItem
+        {
+            get => _selectedTask;
+            set
+            {
+                SetProperty(ref _selectedTask, value);
+                OnTaskSelected(value);
+            }
+        }
+
+        async void OnTaskSelected(Taski item)
+        {
+            if (item == null)
+                return;
+
+            await Shell.Current.GoToAsync($"{nameof(TaskDetailPage)}?{nameof(TaskDetailViewModel.ItemId)}={item.Id}");
         }
 
         private async void OnAddTask(object obj)

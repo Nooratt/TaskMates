@@ -43,7 +43,7 @@ namespace TaskDudes.Controllers
             await context.SaveChangesAsync();
         }
 
-        public async void RemoveTaskAsync(Taski taski)
+        public static async void RemoveTaskAsync(Taski taski)
         {
             context.Tasks.Remove(taski);
             await context.SaveChangesAsync();

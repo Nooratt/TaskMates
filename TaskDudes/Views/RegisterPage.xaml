@@ -9,7 +9,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand" Padding="5">
-            <Entry Text="{Binding UserName, Mode=TwoWay}" Placeholder="UserName"></Entry>
+            <Entry Text="{Binding UserName, Mode=TwoWay}" Placeholder="User Name"></Entry>
             <Entry Text="{Binding Email, Mode=TwoWay}" Placeholder="Email"></Entry>
             <Entry Text="{Binding Password, Mode=TwoWay}" Placeholder="Password" IsPassword="True"></Entry>
             <Entry Text="{Binding PasswordConf, Mode=TwoWay}" Placeholder="Confirm Password" IsPassword="True"></Entry>

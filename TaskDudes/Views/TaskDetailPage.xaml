@@ -3,12 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TaskDudes.Views.TaskDetailPage"
              Title="{Binding Title}">
-
-    <StackLayout Spacing="20" Padding="15">
-        <Label Text="Text:" FontSize="Medium" />
-        <Label Text="{Binding Text}" FontSize="Small"/>
-        <Label Text="Description:" FontSize="Medium" />
-        <Label Text="{Binding Description}" FontSize="Small"/>
+    <StackLayout>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="Task name:" FontSize="Medium" />
+            <Label Text="{Binding Name}" FontSize="Small"/>
+            <Label Text="Task description:" FontSize="Medium" />
+            <Label Text="{Binding Description}" FontSize="Small"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Button x:Name="BtnModify" Text="Modify" BackgroundColor="#1d3b6b" Command="{Binding ModifyCommand}"/>
+            <Button x:Name="BtnDelete" Text="Delete" BackgroundColor="red" Command="{Binding DeleteCommand}"/>
+        </StackLayout>
     </StackLayout>
-    
+
 </ContentPage>
