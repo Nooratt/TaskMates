@@ -3,16 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TaskDudes.Views.TaskDetailPage"
              Title="{Binding Title}">
-    <StackLayout>
-        <StackLayout Spacing="20" Padding="15">
-            <Label Text="Task name:" FontSize="Medium" />
-            <Label Text="{Binding Name}" FontSize="Small"/>
-            <Label Text="Task description:" FontSize="Medium" />
-            <Label Text="{Binding Description}" FontSize="Small"/>
+    <StackLayout HorizontalOptions="FillAndExpand" BackgroundColor="LightBlue">
+        <StackLayout IsVisible="{Binding ViewMode}" HorizontalOptions="Center">
+            <StackLayout  HorizontalOptions="Center" Spacing="13">
+                <Label Text="Task name:" FontSize="Medium"/>
+                <Label Text="{Binding Name}" FontSize="Medium"/>
+                <Label Text="Task description:" FontSize="Medium"/>
+                <Label Text="{Binding Description}" FontSize="Medium"/>
+                <Label Text="Date:" FontSize="Medium"/>
+                <Label Text="{Binding Date}" FontSize="Medium"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Button x:Name="BtnModify" Text="Modify" BackgroundColor="#1d3b6b" Command="{Binding ModifyCommand}"/>
+                <Button x:Name="BtnDelete" Text="Delete" BackgroundColor="red" Command="{Binding DeleteCommand}"/>
+            </StackLayout>
         </StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Button x:Name="BtnModify" Text="Modify" BackgroundColor="#1d3b6b" Command="{Binding ModifyCommand}"/>
-            <Button x:Name="BtnDelete" Text="Delete" BackgroundColor="red" Command="{Binding DeleteCommand}"/>
+        <StackLayout IsVisible="{Binding ModifyMode}" HorizontalOptions="Center">
+            <StackLayout HorizontalOptions="Center">
+                <Entry Text="{Binding Name, Mode=TwoWay}"  FontSize="Medium" />
+                <Editor Text="{Binding Description, Mode=TwoWay}"  AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+                <Label Text="Date"></Label>
+                <DatePicker Date="{Binding Date, Mode=TwoWay}" ></DatePicker>
+                <Label Text="Task is repeating: "></Label>
+                <CheckBox IsChecked="{Binding IsRepeating}"></CheckBox>
+                <Label Text="Repeat days" IsVisible="{Binding IsRepeating}"></Label>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Margin="0,10,0,10">
+                <Button x:Name="BtnCancel" Text="Cancel" BackgroundColor="#1d3b6b" Command="{Binding CancelCommand}"/>
+                <Button x:Name="BtnSave" Text="Save" BackgroundColor="#1d3b6b" Command="{Binding SaveCommand}"/>
+            </StackLayout>
         </StackLayout>
     </StackLayout>
 

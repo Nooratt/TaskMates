@@ -37,7 +37,7 @@ namespace TaskDudes.Controllers
             }
         }
 
-        public async void UpdateTaskAsync(Taski task)
+        public static async void UpdateTaskAsync(Taski task)
         {
             context.Tasks.Update(task);
             await context.SaveChangesAsync();

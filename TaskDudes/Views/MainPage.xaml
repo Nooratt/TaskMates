@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
 
         <StackLayout Grid.Row="1" Orientation="Vertical" Padding="50,14,20,0" Margin="10" Spacing="1" BackgroundColor="#1d3b6b">
-            <Label Text="Your daily tasks" FontSize="20" TextColor="white" Margin="-20,0,0,0"/>
+            <Label Text="{Binding Today}" FontSize="20" TextColor="white" Margin="-20,0,0,0"/>
 
             <RefreshView x:DataType="vm:MainViewModel" Command="{Binding LoadTasksCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}" IsVisible="{Binding TasksNotEmpty}">
                 <ListView x:Name="TasksListView"
@@ -56,7 +56,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </RefreshView>
-            <Label IsVisible="{Binding TasksIsEmpty}" Text="Nothing planned yet for today..."></Label>
+            <Label IsVisible="{Binding TasksIsEmpty}" Text="Nothing planned yet for today..."  TextColor="White"></Label>
             <Button Margin="0,10,0,10" Text="New task"
                         FontSize="20"
                         Command="{Binding NewTaskCommand}"

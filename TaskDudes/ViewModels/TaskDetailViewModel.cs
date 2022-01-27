@@ -15,16 +15,23 @@ namespace TaskDudes.ViewModels
         private Taski task;
         private string name;
         private string description;
+        private DateTime date;
         private bool isRepeating;
+        private bool viewMode;
+        private bool modifyMode;
 
         public Command DeleteCommand { get; }
         public Command ModifyCommand { get; }
+        public Command CancelCommand { get; }
+        public Command SaveCommand  { get; }
         public string Id { get; set; }
 
         public TaskDetailViewModel()
         {
             DeleteCommand = new Command(DeleteTask);
             ModifyCommand = new Command(ModifyTask);
+            CancelCommand = new Command(Cancel);
+            SaveCommand = new Command(Save);
         }
 
         public string Name
@@ -37,6 +44,12 @@ namespace TaskDudes.ViewModels
         {
             get => description;
             set => SetProperty(ref description, value);
+        }
+
+        public DateTime Date
+        {
+            get => date;
+            set => SetProperty(ref date, value);
         }
 
         public bool IsRepeating
@@ -70,6 +83,18 @@ namespace TaskDudes.ViewModels
             }
         }
 
+        public bool ViewMode
+        {
+            get => viewMode;
+            set => SetProperty(ref viewMode, value);
+        }
+
+        public bool ModifyMode
+        {
+            get { return modifyMode; }
+            set => SetProperty(ref modifyMode, value);
+        }
+
         public void LoadItemId(string itemId)
         {
             try
@@ -79,7 +104,10 @@ namespace TaskDudes.ViewModels
                 Id = task.Id;
                 Name = task.TaskName;
                 Description = task.TaskDescription;
+                Date = task.Date;
                 IsRepeating = task.Repeating;
+                ViewMode = true;
+                ModifyMode = false;
             }
             catch (Exception)
             {
@@ -100,7 +128,28 @@ namespace TaskDudes.ViewModels
 
         public void ModifyTask()
         {
+            ModifyMode = true;
+            ViewMode = false;
             
+        }
+
+        public void Cancel()
+        {
+            ModifyMode = false;
+            ViewMode = true;
+
+        }
+
+        public void Save()
+        {
+            Task.TaskName = Name;
+            Task.TaskDescription = Description;
+            Task.Repeating = IsRepeating;
+            Task.Date = Date;
+            TaskController.UpdateTaskAsync(Task);
+            ModifyMode = false;
+            ViewMode = true;
+
         }
     }
 }

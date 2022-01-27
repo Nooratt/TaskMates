@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Input;
@@ -19,6 +20,8 @@ namespace TaskDudes.ViewModels
         public ObservableCollection<Taski> Tasks { get; } = new ObservableCollection<Taski>();
         public Command LoadTasksCommand { get; }
         public Command TaskTapped { get; }
+
+        public DateTime Today { get; }= DateTime.Now.Date;
         public MainViewModel()
         {
             Title = "Welcome to Task Mates";
@@ -27,7 +30,8 @@ namespace TaskDudes.ViewModels
             TaskTapped = new Command<Taski>(OnTaskSelected);
             ExecuteLoadTasksCommand();
 
-        }
+        }           
+        
         public void ExecuteLoadTasksCommand()
         {
             IsBusy = true;
@@ -41,7 +45,8 @@ namespace TaskDudes.ViewModels
                 List<Taski> tasks = TaskController.GetAllUserTasks(App.LoggedUser.Id);
                 foreach (var item in tasks)
                 {
-                    Tasks.Add(item);
+                    if(item.Date.Date == Today) { Tasks.Add(item); }
+                        
                 }
             }
             catch (Exception ex)
@@ -58,6 +63,7 @@ namespace TaskDudes.ViewModels
         {
             IsBusy = true;
             SelectedItem = null;
+            
         }
 
         public Taski SelectedItem
